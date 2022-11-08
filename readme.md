@@ -8,14 +8,26 @@ Official data:https://dadosabertos.tse.jus.br/dataset/resultados-2022-boletim-de
 To read BU files you will need Python and some libraries. In directory <a href=Tools>Tools</a> you can find more instructions.
 
 To read Log files you will need a decompress program named 7z. In Windows you can find this program in:https://www.7-zip.org/download.html
-In Linux, it depends on your Linux Distribution. For example in Oracle Linux for Windows you will need install Epel repository before issue the command "yum install p7zip". On Ubuntu you just need to issue the command "apt-get install p7zip".
+In Linux, it depends on your Linux Distribution. For example in Oracle Linux for Windows you will need install Epel repository before issue the command "yum install p7zip". On Ubuntu you just need to issue the command : 
+```
+apt-get install p7zip 
+```
+.
 
-For BU files you will need to donwload the zip file in tools direcory, install some libraries (pip install asn1tools asn1crypto ed25519 ecdsa),
-and run the following command in tools directory:  python3 ./python/bu_dump.py -s spec/bu.asn1 -b bu-file.bu
+For BU files you will need to donwload the zip file in tools direcory, install some libraries:
+```
+pip install asn1tools asn1crypto ed25519 ecdsa 
+```
+
+And run the following command in tools directory: 
+```
+python3 ./python/bu_dump.py -s spec/bu.asn1 -b bu-file.bu 
+```
 
 The result is something like this:
 
- python3 ./python/bu_dump.py -a spec/bu.asn1 -b bu/o00407-4002901790057.bu
+```
+python3 ./python/bu_dump.py -a spec/bu.asn1 -b bu/o00407-4002901790057.bu
 2022-11-08 08:30:52,178 - INFO - Converte bu/o00407-4002901790057.bu com as especificações ['spec/bu.asn1']
 EntidadeEnvelopeGenerico:
 .   cabecalho:
@@ -81,9 +93,15 @@ EntidadeBoletimUrna:
 .   .   tipoArquivo = votacaoUE
 .   .   tipoUrna = secao
 .   .   versaoVotacao = 8.26.0.0 - Onça-pintada
+```
 
-In my experience the contents came with some dots. I don´t know if this is related to some charset conversion or not. To remove dots in archive i use the command in Linux: python3 ./python/bu_dump.py -a spec/bu.asn1 -b bu/o00407-4002901790057.bu | tr "." " "
+In my experience the contents came with some dots. I don´t know if this is related to some charset conversion or not. To remove dots in archive i use the command in Linux: 
+```
+python3 ./python/bu_dump.py -a spec/bu.asn1 -b bu/o00407-4002901790057.bu | tr "." " "  
+```
+
 The result is more clean:
+```
 python3 ./python/bu_dump.py -a spec/bu.asn1 -b bu/o00407-4002901790057.bu | tr "." " "
 2022-11-08 08:32:33,887 - INFO - Converte bu/o00407-4002901790057.bu com as especificações ['spec/bu.asn1']
 EntidadeEnvelopeGenerico:
@@ -150,15 +168,22 @@ EntidadeBoletimUrna:
         tipoArquivo = votacaoUE
         tipoUrna = secao
         versaoVotacao = 8 26 0 0 - Onça-pintada
-        
- Using a script you can process this file to generate a more convenient data. I use the previews command to generate a text clean file with the command:  python3 ./python/bu_dump.py -a spec/bu.asn1 -b bu/o00407-4002901790057.bu | tr "." " " >  bu2/o00407-4002901790057.bu.txt
+```
 
-Running the following command you will have a csv: echo "municipio,zona,secao,codigo,votos,codigo,votos,codigo,votos,codigo,votos,urna";grep  "InternoUrna\|codigo\|quantidade\|nulo\|branco\|tipoVoto\|municipio\|zona\|secao"   o00407-4123800360198.bu.txt | grep -v "cargo\|municipioZona\|iden\|Carga\|tipoU" | awk "{ print \$3 }" |xargs | awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$7,\",\",\$8,\",\",\$11,\",\",\$10,\",\",\$13,\",\",\$12,\",\",\$14}"
+ Using a script you can process this file to generate a more convenient data. I use the previews command to generate a text clean file with the command: 
+ ```
+ python3 ./python/bu_dump.py -a spec/bu.asn1 -b bu/o00407-4002901790057.bu | tr "." " " >  bu2/o00407-4002901790057.bu.txt 
+ ```
+
+Running the following command on Linux you will have a csv: 
+```
+echo "municipio,zona,secao,codigo,votos,codigo,votos,codigo,votos,codigo,votos,urna";grep  "InternoUrna\|codigo\|quantidade\|nulo\|branco\|tipoVoto\|municipio\|zona\|secao"   o00407-4123800360198.bu.txt | grep -v "cargo\|municipioZona\|iden\|Carga\|tipoU" | awk "{ print \$3 }" |xargs | awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$7,\",\",\$8,\",\",\$11,\",\",\$10,\",\",\$13,\",\",\$12,\",\",\$14}"
+```
 
 This will generate the output:
-
+```
 municipio,zona,secao,codigo,votos,codigo,votos,codigo,votos,codigo,votos,urna
 41238 , 36 , 198 , 13 , 114 , 22 , 127 , branco , 6 , nulo , 6 , 2085609
-
+```
 To proccess all files is just a matter to batch this commands!
 
