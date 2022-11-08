@@ -14,7 +14,7 @@ apt-get install p7zip
 ```
 .
 
-For BU files you will need to donwload the zip file in tools direcory, install some libraries:
+For BU files you will need to donwload the <a href=https://www.tse.jus.br/eleicoes/eleicoes-2022/arquivos/formato-dos-arquivos-de-bu-rdv-e-assinatura-digital-17-9-22/@@download/file/formato-arquivos-bu-rdv-ass-digital.zip>zip file in tools</a>, and install some libraries:
 ```
 pip install asn1tools asn1crypto ed25519 ecdsa 
 ```
