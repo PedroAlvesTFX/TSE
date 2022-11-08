@@ -10,7 +10,7 @@ To read BU files you will need Python and some libraries. In directory <a href=T
 To read Log files you will need a decompress program named 7z. In Windows you can find this program in:https://www.7-zip.org/download.html
 In Linux, it depends on your Linux Distribution. For example in Oracle Linux for Windows you will need install Epel repository before issue the command "yum install p7zip". On Ubuntu you just need to issue the command "apt-get install p7zip".
 
-For BU files uou will need to donwload the zip file in tools direcory, install some libraries (pip install asn1tools asn1crypto ed25519 ecdsa),
+For BU files you will need to donwload the zip file in tools direcory, install some libraries (pip install asn1tools asn1crypto ed25519 ecdsa),
 and run the following command in tools directory:  python3 ./python/bu_dump.py -s spec/bu.asn1 -b bu-file.bu
 
 The result is something like this:
