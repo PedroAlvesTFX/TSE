@@ -6,4 +6,6 @@ Official data:https://dadosabertos.tse.jus.br/dataset/resultados-2022-boletim-de
               https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2022_BR.zip
 
 To read BU files you will need Python and some libraries. In directory <a href=Tools>Tools</a> you can find more instructions.
+You will need to donwload the zip file in tools direcory, install some libraries (pip install asn1tools asn1crypto ed25519 ecdsa),
+and run the following command in tools directory:  python3 ./python/bu_dump.py -s spec/bu.asn1 -b bu-file.bu
 
