@@ -187,3 +187,7 @@ municipio,zona,secao,eleitBiometria,eleitLibCod,idEleicao,eleitAptos,eleitCompa,
 ```
 To proccess all files is just a matter to batch this commands!
 
+```
+ echo "municipio,zona,secao,eleitBiometria,eleitLibCod,idEleicao,eleitAptos,eleitCompa,LulaVoto
+s,BolsoVotos,brancoVotos,nuloVotos,urna" > csv/header.csv; for i in `ls -c1 bu2`; do grep  "InternoUrna\|codigo\|quantidade\|nulo\|branco\|tipoVoto\|municipio\|zona\|secao\|Biometrico\|LibCod\|idEleic\|Aptos\|Compar"  $i | grep -v "cargo\|municipioZona\|iden\|Carga\|tipoU" |  awk "{ print \$3 }" | xargs | awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$6,\",\",\$7,\",\",\$8,\",\",\$10,\",\",\$13,\",\",\$15,\",\",\$17,\",\",\$19}" > csv/output.csv; done
+```
