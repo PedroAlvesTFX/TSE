@@ -182,8 +182,8 @@ echo "municipio,zona,secao,eleitBiometria,eleitLibCod,idEleicao,eleitAptos,eleit
 
 This will generate the output:
 ```
-municipio,zona,secao,codigo,votos,codigo,votos,codigo,votos,codigo,votos,urna
-41238 , 36 , 198 , 13 , 114 , 22 , 127 , branco , 6 , nulo , 6 , 2085609
+municipio,zona,secao,eleitBiometria,eleitLibCod,idEleicao,eleitAptos,eleitCompa,LulaVotos,BolsoVotos,brancoVotos,nuloVotos,urna
+48534 , 342 , 31 , 35 , 8 , 255 , 157 , 124 , 24 , 1 , 8 , 1265507
 ```
 To proccess all files is just a matter to batch this commands!
 
