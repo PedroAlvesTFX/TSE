@@ -177,7 +177,7 @@ EntidadeBoletimUrna:
 
 Running the following command on Linux you will have a csv: 
 ```
-echo "municipio,zona,secao,codigo,votos,codigo,votos,codigo,votos,codigo,votos,urna";grep  "InternoUrna\|codigo\|quantidade\|nulo\|branco\|tipoVoto\|municipio\|zona\|secao"   o00407-4123800360198.bu.txt | grep -v "cargo\|municipioZona\|iden\|Carga\|tipoU" | awk "{ print \$3 }" |xargs | awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$7,\",\",\$8,\",\",\$11,\",\",\$10,\",\",\$13,\",\",\$12,\",\",\$14}"
+echo "municipio,zona,secao,eleitBiometria,eleitLibCod,idEleicao,eleitAptos,eleitCompa,LulaVotos,BolsoVotos,brancoVotos,nuloVotos,urna";grep  "InternoUrna\|codigo\|quantidade\|nulo\|branco\|tipoVoto\|municipio\|zona\|secao\|Biometrico\|LibCod\|idEleic\|Aptos\|Compar"  bu2/o00407-4853403420031.bu.txt | grep -v "cargo\|municipioZona\|iden\|Carga\|tipoU" |  awk "{ print \$3 }" | xargs | awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$7,\",\",\$8,\",\",\$10,\",\",\$13,\",\",\$15,\",\",\$17,\",\",\$19}"
 ```
 
 This will generate the output:
