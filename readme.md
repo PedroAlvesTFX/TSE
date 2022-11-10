@@ -199,5 +199,13 @@ for i in `ls -c1 `; do Lu=`grep "codigo = 13" -a2   $i | grep Votos | awk "{ pri
 Br=`grep "tipoVoto = branco" -B1   $i  | grep Votos | awk "{ print \\$3}"`;   if [[ ! $Br ]] ; then Br=0; fi; 
 Nu=`grep "tipoVoto = nulo" -B1   $i  | grep Votos | awk "{ print \\$3}"`;   if [[ ! $Nu ]] ; then  Nu=0; fi; 
 grep  "InternoUrna\|municipio\|zona\|secao\|Biometrico\|LibCod\|idEleic\|Aptos\|Compar"  $i | grep -v "municipioZona\|tipoUrna" | awk "{ print \$3 }" | xargs |  awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$6,\",\",\$7,\",\",\$8,\",\",\$9, \",\",$Lu, \",\", $Bo, \",\", $Br, \",\", $Nu, \",\",\"$i\" }" >> output.csv; done
+```
+
 
 ```
+for i in `ls -c1 `; do Lu=`head -52 $i  | grep "codigo = 13" -a2    | grep Votos | awk "{ print \\
+$3}"`;   if [[ ! $Lu ]] ; then  Lu=0;fi;  Bo=`head -52 presidente $i | grep "codigo = 22" -a2   | grep Votos | awk "{ print \\$3}"`;    if [
+[ ! $Bo ]] ; then  Bo=0; fi;  Br=`head -52 $i | grep "tipoVoto = branco" -B1   | grep Votos | awk "{ print \\$3}"`;   if [[ ! $Br ]] ; then
+Br=0; fi;  Nu=`head -52 $i | grep "tipoVoto = nulo" -B1     | grep Votos | awk "{ print \\$3}"`;   if [[ ! $Nu ]] ; then  Nu=0; fi;  head -52 | grep  "InternoUrna\|municipio\|zona\|secao\|Biometrico\|LibCod\|idEleic\|Aptos\|Compar"   | grep -v "municipioZona\|tipoUrna" | awk "{ print \$3 }" | xargs |  awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$6,\",\",\$7,\",\",\$8,\",\",\$9, \",\",$Lu, \",\", $Bo, \",\", $Br, \",\", $Nu, \",\",\"$i\" }" >> ../SP_output.csv; done
+```
+
