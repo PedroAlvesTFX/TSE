@@ -191,3 +191,13 @@ To proccess all files is just a matter to batch this commands!
  echo "municipio,zona,secao,eleitBiometria,eleitLibCod,idEleicao,eleitAptos,eleitCompa,LulaVoto
 s,BolsoVotos,brancoVotos,nuloVotos,urna" > csv/header.csv; for i in `ls -c1 bu2`; do grep  "InternoUrna\|codigo\|quantidade\|nulo\|branco\|tipoVoto\|municipio\|zona\|secao\|Biometrico\|LibCod\|idEleic\|Aptos\|Compar"  bu2/$i | grep -v "cargo\|municipioZona\|iden\|Carga\|tipoU" |  awk "{ print \$3 }" | xargs | awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$6,\",\",\$7,\",\",\$8,\",\",\$10,\",\",\$13,\",\",\$15,\",\",\$17,\",\",\$19}" > csv/output.csv; done
 ```
+
+```
+ echo "municipio,zona,secao,QtdEleitBio,QtdEleitLibCod,idEleicao,QtdEleiApto,QtdComp,NumUrna,VotoLula,VotoBolsonaro,VotoNulo,VotoBranco,file" > header.csv;
+for i in `ls -c1 `; do Lu=`grep "codigo = 13" -a2   $i | grep Votos | awk "{ print \\$3}"`;   if [[ ! $Lu ]] ; then  Lu=0;fi;
+ Bo=`grep "codigo = 22" -a2   $i | grep Votos | awk "{ print \\$3}"`;    if [[ ! $Bo ]] ; then  Bo=0; fi; 
+Br=`grep "tipoVoto = branco" -B1   $i  | grep Votos | awk "{ print \\$3}"`;   if [[ ! $Br ]] ; then Br=0; fi; 
+Nu=`grep "tipoVoto = nulo" -B1   $i  | grep Votos | awk "{ print \\$3}"`;   if [[ ! $Nu ]] ; then  Nu=0; fi; 
+grep  "InternoUrna\|municipio\|zona\|secao\|Biometrico\|LibCod\|idEleic\|Aptos\|Compar"  $i | grep -v "municipioZona\|tipoUrna" | awk "{ print \$3 }" | xargs |  awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$6,\",\",\$7,\",\",\$8,\",\",\$9, \",\",$Lu, \",\", $Bo, \",\", $Br, \",\", $Nu, \",\",\"$i\" }" >> output.csv; done
+
+```
