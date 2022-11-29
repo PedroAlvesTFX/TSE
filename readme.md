@@ -209,3 +209,17 @@ $3}"`;   if [[ ! $Lu ]] ; then  Lu=0;fi;  Bo=`head -52 presidente $i | grep "cod
 Br=0; fi;  Nu=`head -52 $i | grep "tipoVoto = nulo" -B1     | grep Votos | awk "{ print \\$3}"`;   if [[ ! $Nu ]] ; then  Nu=0; fi;  head -52 | grep  "InternoUrna\|municipio\|zona\|secao\|Biometrico\|LibCod\|idEleic\|Aptos\|Compar"   | grep -v "municipioZona\|tipoUrna" | awk "{ print \$3 }" | xargs |  awk "{ print \$1,\",\",\$2,\",\",\$3,\",\",\$4,\",\",\$5,\",\",\$6,\",\",\$7,\",\",\$8,\",\",\$9, \",\",$Lu, \",\", $Bo, \",\", $Br, \",\", $Nu, \",\",\"$i\" }" >> ../SP_output.csv; done
 ```
 
+```
+ for i in `ls -c1 /mnt/e/eleicoes2022/expanded/TO/o00407-9699700*.rdv`; do python3 python/rdv_dump.py -a spec/rdv.asn1 -r $i ; done
+ 
+ for i in `dir -C1`; do 7zr x -y  -o"../log2/" $i >/dev/null; for files in `7zr l -y  $i |tail -n5 | grep -v "\-\-" | grep -v files | grep -v Name | awk "{ print \\$6 }"`;  do  mv ../log2/$files ../log2/$i-$files; done; done
+ 
+  echo "" > pi-log-2votos-1min.txt;for i in `dir -C1 o00*`; do a=`grep -i "computado" $i | cut -c 1-17 | uniq -c | sort | grep "2 30" | wc -l`; b=`grep -i "computado" $i | cut -c 1-17 | uniq -c | sort | grep "1 30" | wc -l`;c=$(($a*100/($b+1)));echo "$a,$b,$c" >> pi-log-2votos-1min.txt; somaC=$(($somaC+$c));soma=$(($soma+1));done; echo $soma , $somaC ,$(($somaC/$soma));
+  
+  for i in `dir -C1 *.logjez`; do 7zr x -y  -o"../log2/" $i >/dev/null; for files in `7zr l -y  $i |tail -n5 | grep -v "\-\-" | grep -v files | grep -v Name | awk "{ print \\$6 }"`;  do  mv ../log2/$files ../log2/$i-$files; done; done
+  
+  find . -type f | xargs   grep Write | grep -v "favor\|Eleit\|dados\|prosse\|Vota\|Score\|sensor\|cancel\|captur\|ELEITO\|CARGO\|__\|pintada\|retornar\|Tenta\|Titu\|assinar\|Impresso\|\eleito\|compl\|txt" > write-error-ba-log.txt
+  
+  
+  
+```
