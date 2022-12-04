@@ -219,7 +219,7 @@ Br=0; fi;  Nu=`head -52 $i | grep "tipoVoto = nulo" -B1     | grep Votos | awk "
   for i in `dir -C1 *.logjez`; do 7zr x -y  -o"../log2/" $i >/dev/null; for files in `7zr l -y  $i |tail -n5 | grep -v "\-\-" | grep -v files | grep -v Name | awk "{ print \\$6 }"`;  do  mv ../log2/$files ../log2/$i-$files; done; done
   
   find . -type f | xargs   grep Write | grep -v "favor\|Eleit\|dados\|prosse\|Vota\|Score\|sensor\|cancel\|captur\|ELEITO\|CARGO\|__\|pintada\|retornar\|Tenta\|Titu\|assinar\|Impresso\|\eleito\|compl\|txt" > write-error-ba-log.txt
-  
-  
-  
 ```
+
+Some odd results found by Dannarib: https://github.com/danarrib/TSEParser/blob/master/DefeitosCarga.md
+
