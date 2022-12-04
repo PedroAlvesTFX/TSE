@@ -221,5 +221,5 @@ Br=0; fi;  Nu=`head -52 $i | grep "tipoVoto = nulo" -B1     | grep Votos | awk "
   find . -type f | xargs   grep Write | grep -v "favor\|Eleit\|dados\|prosse\|Vota\|Score\|sensor\|cancel\|captur\|ELEITO\|CARGO\|__\|pintada\|retornar\|Tenta\|Titu\|assinar\|Impresso\|\eleito\|compl\|txt" > write-error-ba-log.txt
 ```
 
-Some odd results found by Dannarib: https://github.com/danarrib/TSEParser/blob/master/DefeitosCarga.md
+Some odd results founded by Dannarib: https://github.com/danarrib/TSEParser/blob/master/DefeitosCarga.md
 
